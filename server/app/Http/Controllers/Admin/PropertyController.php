@@ -4,38 +4,41 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Property;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\PropertyRequest;
+use App\Http\Resources\PropertyResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class PropertyController extends Controller
 {
     public function index(): ResourceCollection
     {
-        return BankResource::collection(Bank::all());
+        return PropertyResource::collection(Property::all());
     }
 
-    public function store(BankRequest $bankRequest): BankResource
+    public function store(PropertyRequest $propertyRequest): PropertyResource
     {
-        $bankCreated = Bank::create($bankRequest->validated());
+        $propertyCreated = Property::create($propertyRequest->validated());
 
-        return new BankResource($bankCreated);
+        return new PropertyResource($propertyCreated);
     }
 
-    public function show(Bank $bank):  BankResource
+    public function show(Property $property):  PropertyResource
     {
-        return new BankResource($bank);
+        return new PropertyResource($property);
     }
 
-    public function update(BankRequest $bankRequest, Bank $bank): BankResource
+    public function update(PropertyRequest $propertyRequest, Property $property): PropertyResource
     {
-        $bank->fill($bankRequest->validated());
-        $bank->save();
+        $property->fill($propertyRequest->validated());
+        $property->save();
 
-        return new BankResource($bank->fresh());
+        return new PropertyResource($property->fresh());
     }
 
-    public function destroy(Bank $bank): void
+    public function destroy(Property $property): void
     {
-        $bank->deleteOrFail();
+        $property->deleteOrFail();
     }
 }
