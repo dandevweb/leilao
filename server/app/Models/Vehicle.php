@@ -9,8 +9,17 @@ class Vehicle extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'price',
+        'increment',
+        'stored_in',
+        'quantity',
+        'description',
+        'auction_id'
+    ];
+
     public function auction()
     {
-        return $this->hasOne(Auction::class);
+        return $this->belongsTo(Auction::class);
     }
 }

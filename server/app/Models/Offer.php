@@ -11,16 +11,16 @@ class Offer extends Model
 
     public function property()
     {
-        return $this->hasOne(Property::class);
+        return $this->belongsTo(Property::class);
     }
 
     public function vehicle()
     {
-        return $this->hasOne(Vehicle::class);
+        return $this->belongsTo(Vehicle::class);
     }
 
     public function client()
     {
-        return $this->hasOne(Client::class);
+        return $this->belongsTo(Client::class);
     }
 }

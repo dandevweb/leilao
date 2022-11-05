@@ -1,64 +1,44 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Vehicle;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Resources\VehicleResource;
+use App\Http\Requests\Admin\VehicleRequest;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class VehicleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): ResourceCollection
     {
-        //
+        return VehicleResource::collection(Vehicle::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(VehicleRequest $vehicleRequest): VehicleResource
     {
-        //
+        $vehicleCreated = Vehicle::create($vehicleRequest->validated());
+
+        return new VehicleResource($vehicleCreated);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Vehicle $vehicle):  VehicleResource
     {
-        //
+        return new VehicleResource($vehicle);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(VehicleRequest $vehicleRequest, Vehicle $vehicle): VehicleResource
     {
-        //
+        $vehicle->fill($vehicleRequest->validated());
+        $vehicle->save();
+
+        return new VehicleResource($vehicle->fresh());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Vehicle $vehicle): void
     {
-        //
+        $vehicle->deleteOrFail();
     }
 }
