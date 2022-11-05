@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('auctions', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->text('address');
+            $table->string('city');
+            $table->string('state');
+            $table->foreignId('bank_id')->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('auctions');
     }
 };
