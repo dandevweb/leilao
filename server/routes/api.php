@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\VehicleController;
+use App\Http\Controllers\ClientController;
 
 /**Auth Routes */
 Route::post('register', [AuthController::class, 'register']);
@@ -26,3 +27,6 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('offers', OfferController::class);
 
 });
+
+Route::post('clients/register', [ClientController::class, 'register']);
+Route::post('clients/login', [ClientController::class, 'login']);
