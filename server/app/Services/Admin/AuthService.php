@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services\Auth;
+namespace App\Services\Admin;
 
 use App\Exceptions\LoginInvalidException;
 use App\Models\User;
