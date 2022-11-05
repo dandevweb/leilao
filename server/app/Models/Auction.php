@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Auction extends Model
 {
     use HasFactory;
+
+    public function bank()
+    {
+        return $this->hasOne(Bank::class);
+    }
 }
