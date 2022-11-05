@@ -18,6 +18,11 @@ class Client extends Model implements JWTSubject
         'password'
     ];
 
+    public function getAuthIdentifierName()
+    {
+        return [];
+    }
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

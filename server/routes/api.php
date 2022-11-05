@@ -28,5 +28,13 @@ Route::middleware('auth:api')->group(function () {
 
 });
 
-Route::post('clients/register', [ClientController::class, 'register']);
-Route::post('clients/login', [ClientController::class, 'login']);
+/**Auth Client Routes */
+Route::post('client/register', [ClientController::class, 'register']);
+Route::post('client/login', [ClientController::class, 'login']);
+
+/**JWT Client Token protected Routes */
+Route::middleware('auth:client')->group(function () {
+
+    Route::post('client/offer', [ClientController::class, 'makeOffer']);
+
+});

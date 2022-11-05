@@ -7,7 +7,9 @@ namespace App\Http\Controllers;
 use App\Services\ClientService;
 use App\Http\Resources\ClientResource;
 use App\Http\Requests\Admin\LoginRequest;
+use App\Http\Requests\ClientOfferRequest;
 use App\Http\Requests\ClientRegisterRequest;
+use App\Http\Resources\OfferResource;
 
 class ClientController extends Controller
 {
@@ -28,6 +30,13 @@ class ClientController extends Controller
 
         return $this->clientService->login($inputs['email'], $inputs['password']);
 
+    }
+
+    public function makeOffer(ClientOfferRequest $clientOfferRequest)
+    {
+        $inputs = $clientOfferRequest->validated();
+
+        return new OfferResource($this->clientService->makeOffer($inputs));
     }
 
 }
