@@ -24,7 +24,8 @@ Route::middleware('auth:api')->group(function () {
 
     Route::apiResource('properties', PropertyController::class);
 
-    Route::apiResource('offers', OfferController::class);
+    Route::get('offers/{vehicle}/vehicle', [OfferController::class, 'vehicleOffer']);
+    Route::get('offers/{property}/property', [OfferController::class, 'propertyOffer']);
 
 });
 

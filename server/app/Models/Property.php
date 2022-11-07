@@ -27,4 +27,9 @@ class Property extends Model
     {
         return $this->belongsTo(Auction::class);
     }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class)->orderBy('id', 'DESC');
+    }
 }

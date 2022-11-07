@@ -4,38 +4,24 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Vehicle;
+use App\Models\Property;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Resources\OfferVehicleResource;
+use App\Http\Resources\OfferPropertyResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class OfferController extends Controller
 {
-    public function index(): ResourceCollection
+
+    public function vehicleOffer(Vehicle $vehicle):  ResourceCollection
     {
-        return BankResource::collection(Bank::all());
+
+        return OfferVehicleResource::collection($vehicle->offers);
     }
 
-    public function store(BankRequest $bankRequest): BankResource
+    public function propertyOffer(Property $property):  ResourceCollection
     {
-        $bankCreated = Bank::create($bankRequest->validated());
-
-        return new BankResource($bankCreated);
-    }
-
-    public function show(Bank $bank):  BankResource
-    {
-        return new BankResource($bank);
-    }
-
-    public function update(BankRequest $bankRequest, Bank $bank): BankResource
-    {
-        $bank->fill($bankRequest->validated());
-        $bank->save();
-
-        return new BankResource($bank->fresh());
-    }
-
-    public function destroy(Bank $bank): void
-    {
-        $bank->deleteOrFail();
+        return OfferPropertyResource::collection($property->offers);
     }
 }

@@ -30,4 +30,9 @@ class Offer extends Model
     {
         return $this->belongsTo(Client::class);
     }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
 }
