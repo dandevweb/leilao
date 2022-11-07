@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Services\ClientService;
+use App\Services\Api\ClientService;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\OfferResource;
 use App\Http\Resources\ClientResource;
 use App\Http\Requests\Admin\LoginRequest;
 use App\Http\Requests\ClientOfferRequest;
 use App\Http\Requests\ClientRegisterRequest;
-use App\Http\Resources\OfferResource;
 
 class ClientController extends Controller
 {

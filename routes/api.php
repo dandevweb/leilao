@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\AuctionController;
+use App\Http\Controllers\Api\AuctionController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\BankController;
-use App\Http\Controllers\Admin\OfferController;
-use App\Http\Controllers\Admin\PropertyController;
-use App\Http\Controllers\Admin\VehicleController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BankController;
+use App\Http\Controllers\Api\OfferController;
+use App\Http\Controllers\Api\PropertyController;
+use App\Http\Controllers\Api\VehicleController;
 use App\Http\Controllers\ClientController;
 
 /**Auth Routes */

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services;
+namespace App\Services\Api;
 
 use App\Models\Client;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\ClientResource;
 use App\Exceptions\LoginInvalidException;
 use App\Exceptions\OfferInvalidException;
-use App\Http\Resources\OffersResource;
 use App\Models\Offer;
 use App\Models\Property;
 use App\Models\Vehicle;
