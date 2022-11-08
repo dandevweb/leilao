@@ -1,18 +1,16 @@
 <?php
 
+use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\PropertyController;
+use App\Http\Controllers\Web\VehicleController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::name('web.')->group(function () {
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/', [HomeController::class, 'home'])->name('home');
+
+    Route::get('/veiculos', [VehicleController::class, 'index'])->name('vehicle.index');
+
+    Route::get('/imoveis', [PropertyController::class, 'index'])->name('property.index');
+
 });

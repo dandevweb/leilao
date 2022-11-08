@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\BankController;
 use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\Api\PropertyController;
 use App\Http\Controllers\Api\VehicleController;
-use App\Http\Controllers\ClientController;
+use App\Http\Controllers\Api\ClientController;
 
 /**Auth Routes */
 Route::post('register', [AuthController::class, 'register']);
@@ -28,6 +28,10 @@ Route::middleware('auth:api')->group(function () {
     Route::get('offers/{property}/property', [OfferController::class, 'propertyOffer']);
 
 });
+
+Route::get('vehicles', [VehicleController::class, 'index']);
+
+Route::get('properties', [PropertyController::class, 'index']);
 
 /**Auth Client Routes */
 Route::post('client/register', [ClientController::class, 'register']);
