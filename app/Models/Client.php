@@ -18,6 +18,11 @@ class Client extends Model implements JWTSubject
         'password'
     ];
 
+    public function offers()
+    {
+        return $this->hasMany(Offer::class)->orderBy('id', 'DESC');
+    }
+
     public function getAuthIdentifierName()
     {
         return [];

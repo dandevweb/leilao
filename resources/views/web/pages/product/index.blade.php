@@ -7,11 +7,16 @@
                 <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
                         src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
                 <div class="col-md-6">
+                    <div class="alert alert-success alert-dismissible show d-none" role="alert" id="alertOffer">
+                        Lance registrado com sucesso.
+                    </div>
                     @isset($product->type)
                         <h1 class="display-5 fw-bolder mb-5">
                             {{ ucfirst($product->type) . ' em ' . $product->city . ' - ' . $product->state }}
                         </h1>
                     @endisset
+
+
                     <div class="d-flex justify-content-around">
                         <div class="mb-4">
                             <strong>Abertura: </strong>
@@ -34,8 +39,10 @@
                     </div>
 
                     <p class="lead">{{ $product->description }}</p>
-                    <form action="{{ route('web.make.offer') }}" class="d-flex" method="post">
+                    <form action="{{ route('web.make.offer') }}" class="d-flex" method="post" id="formMakeOffer">
                         @csrf
+                        <input type="hidden" name="client_id" value="0">
+                        <input type="hidden" name="client_token" value="0">
                         <input type="hidden" name="vehicle_id" value="{{ !isset($product->type) ? $product->id : null }}">
                         <input type="hidden" name="property_id" value="{{ isset($product->type) ? $product->id : null }}">
                         <input class="form-control
@@ -52,4 +59,8 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script src="{{ asset('assets/js/web/offer.js') }}"></script>
 @endsection

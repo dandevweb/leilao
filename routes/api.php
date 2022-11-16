@@ -47,5 +47,7 @@ Route::post('client/login', [ClientController::class, 'login']);
 Route::middleware('auth:client')->group(function () {
 
     Route::post('client/offer', [ClientController::class, 'makeOffer']);
+    Route::get('client/{client}', [ClientController::class, 'show']);
+    Route::get('client/{client}/offers', [ClientController::class, 'offers']);
 
 });

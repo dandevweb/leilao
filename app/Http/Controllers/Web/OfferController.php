@@ -4,30 +4,57 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Redirect;
 
 class OfferController extends Controller
 {
-    public function __construct()
+
+    public function index(Request $request)
     {
-        if (!Cookie::has('cookie_name')) {
-            return redirect()->route('web.login')->send();
-        }
+        $clientId = $request->client_id;
+        $token = $request->client_token;
+
+        $url = url("/api/client/$clientId/offers");
+        $request = Request::create($url, 'GET');
+        $request->headers->set('Content-Type', 'application/json');
+        $request->headers->set('Accept', 'application/json');
+        $request->headers->set('Authorization', $token);
+        $response = app()->handle($request)->getData();
+
+        $offers = isset($response->data) ? $response->data : '';
+
+        return view('web.pages.offers.index', compact('offers'));
     }
 
     public function create(Request $request)
     {
-        $token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2NsaWVudC9sb2dpbiIsImlhdCI6MTY2NzY3OTcyMywiZXhwIjoxNjcxMjc5NzIzLCJuYmYiOjE2Njc2Nzk3MjMsImp0aSI6IlUzWTF5aWZHMGQ0RGNuNkUiLCJzdWIiOiIyIiwicHJ2IjoiNDFlZmI3YmFkN2Y2ZjYzMmUyNDA1YmQzYTc5M2I4YTZiZGVjNjc3NyJ9.UU1j41KSLQ_4hUlNEgtIKNegSNwtJQsmyb-EXs63pL8';
+        $clientId = $request->client_id;
+        $token = $request->client_token;
+        $vehicleId = $request->vehicle_id == 0 ? null : (int)$request->vehicle_id;
+        $propertyId = $request->property_id == 0 ? null : (int)$request->property_id;
 
-        $url = url('/api/properties');
-        $request = Request::create($url, 'POST', $request->all());
+        $url = url("/api/client/$clientId");
+        $request = Request::create($url, 'GET');
         $request->headers->set('Content-Type', 'application/json');
         $request->headers->set('Accept', 'application/json');
-        $request->headers->set('Authorization', 'Bearer ' . $token);
+        $request->headers->set('Authorization', $token);
         $response = app()->handle($request)->getData();
-        $properties = $response;
 
-        // dd($properties);
+        if (!isset($response->data)) {
+            return response()->json(['redirect' => route('web.login')]);
+        }
+
+        $data = [
+            'client_id' => (int)$clientId,
+            'price' => (float)$request->price,
+            'token' => $token
+        ];
+        if ($vehicleId) {
+            $data['vehicle_id'] = $vehicleId;
+        }
+        if ($propertyId) {
+            $data['property_id'] = $propertyId;
+        }
+
+        return response()->json(['message' => 'success', 'data' => $data]);
     }
 }

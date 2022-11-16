@@ -17,7 +17,8 @@
                         aliquid explicabo tempore incidunt quam adipisci dolor doloremque. Exercitationem ea vero
                         neque molestias aliquam atque harum aperiam ullam.
                     </p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Ver Imóveis</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="{{ route('web.property.index') }}" role="button">Ver
+                            Imóveis</a></p>
                 </div>
             </div>
         </div>
@@ -32,7 +33,8 @@
                         assumenda natus nihil, perferendis nam consequatur, iusto quidem impedit nisi sunt, expedita
                         voluptatem provident placeat molestias a!
                     </p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Ver Veículos</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="{{ route('web.vehicle.index') }}" role="button">Ver
+                            Veículos</a></p>
                 </div>
             </div>
         </div>

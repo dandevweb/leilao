@@ -23,7 +23,8 @@ Route::name('web.')->group(function () {
     Route::get('registrar', [AuthController::class, 'register'])->name('register');
     Route::post('registrar', [AuthController::class, 'registerPost'])->name('register.post');
 
-    Route::post('/product/offer', [OfferController::class, 'create'])->name('make.offer');
+    Route::post('product/offer', [OfferController::class, 'create'])->name('make.offer');
+    Route::post('meus-lances', [OfferController::class, 'index'])->name('client.offers');
 
 
 });
