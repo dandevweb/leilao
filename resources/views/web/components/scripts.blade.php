@@ -10,3 +10,5 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="{{ asset('assets/js/scripts.js') }}"></script>
+
+@yield('js')

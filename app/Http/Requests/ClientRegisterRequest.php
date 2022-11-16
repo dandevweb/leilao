@@ -18,7 +18,7 @@ class ClientRegisterRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'document' => 'required|string|min:14|max:14',
+            'document' => 'required|string|min:14|max:14|unique:clients',
             'email' => 'required|email|unique:clients',
             'phone' => 'required|string',
             'password' => 'required|string|min:8|max:30'

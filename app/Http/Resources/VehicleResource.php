@@ -14,6 +14,7 @@ class VehicleResource extends JsonResource
             'id' => $this->id,
             'price' => $this->price,
             'increment' => $this->increment,
+            'last_offer' => $this->lastOffer->first()->price ?? $this->price,
             'stored_in' => $this->stored_in,
             'quantity' => $this->quantity,
             'description' => $this->description,

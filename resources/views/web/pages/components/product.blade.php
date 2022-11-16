@@ -31,15 +31,13 @@
                                     <strong>Lance Inicial</strong> <br>
                                     R$ {{ moneyBrl($product->price) }}
                                 </p>
-                                <p class="mb-0">
-                                    <strong>Lance Atual</strong> <br>
-                                    R$ {{ moneyBrl($product->price) }}
-                                </p>
                             </div>
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ver
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                    href="
+                                    {{ !isset($product->type) ? route('web.vehicle.show', $product->id) : route('web.property.show', $product->id) }}">Ver
                                     detalhes</a>
                             </div>
                         </div>

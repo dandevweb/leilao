@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\Api\PropertyController;
 use App\Http\Controllers\Api\VehicleController;
 use App\Http\Controllers\Api\ClientController;
+use Illuminate\Http\Request;
 
 /**Auth Routes */
 Route::post('register', [AuthController::class, 'register']);
@@ -30,12 +31,17 @@ Route::middleware('auth:api')->group(function () {
 });
 
 Route::get('vehicles', [VehicleController::class, 'index']);
+Route::get('vehicles/{vehicle}', [VehicleController::class, 'show']);
 
 Route::get('properties', [PropertyController::class, 'index']);
+Route::get('properties/{property}', [PropertyController::class, 'show']);
 
 /**Auth Client Routes */
 Route::post('client/register', [ClientController::class, 'register']);
 Route::post('client/login', [ClientController::class, 'login']);
+// Route::post('client/login', function(Request $request){
+//     dd($request);
+// });
 
 /**JWT Client Token protected Routes */
 Route::middleware('auth:client')->group(function () {

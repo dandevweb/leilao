@@ -13,6 +13,7 @@ class AuctionResource extends JsonResource
         return [
             'id' => $this->id,
             'date' => $this->date,
+            'finished_date' => date('Y-m-d', strtotime($this->date . '+ 10 days')),
             'name' => $this->name,
             'address' => $this->address,
             'city' => $this->city,

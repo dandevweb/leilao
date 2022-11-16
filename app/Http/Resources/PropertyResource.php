@@ -14,6 +14,7 @@ class PropertyResource extends JsonResource
             'id' => $this->id,
             'price' => $this->price,
             'increment' => $this->increment,
+            'last_offer' => $this->lastOffer->first()->price ?? $this->price,
             'category' => $this->category,
             'type' => $this->type,
             'description' => $this->description,

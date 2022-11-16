@@ -26,7 +26,6 @@
 
     @include('web.components.scripts')
 
-    @yield('js')
 
 </body>
 

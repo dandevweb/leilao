@@ -3,3 +3,5 @@
     integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 
 <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
+
+@yield('css')

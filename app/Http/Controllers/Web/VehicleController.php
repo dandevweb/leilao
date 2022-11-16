@@ -18,4 +18,16 @@ class VehicleController extends Controller
 
         return view('web.pages.vehicle.index', compact('vehicles'));
     }
+
+    public function show(int $id)
+    {
+        $url = url("/api/vehicles/$id");
+        $request = Request::create($url, 'GET');
+        $request->headers->set('Content-Type', 'application/json');
+        $request->headers->set('Accept', 'application/json');
+        $response = app()->handle($request)->getData();
+        $product = $response->data;
+
+        return view('web.pages.product.index', compact('product'));
+    }
 }

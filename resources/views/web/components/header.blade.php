@@ -19,10 +19,14 @@
                         <a class="nav-link" href="{{ route('web.property.index') }}">Imóveis</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control mr-2" type="search" placeholder="Pesquisar" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-                </form>
+                <div class="d-none align-items-center" id="loggedUser">
+                    <h6 class="mr-4 mb-0 text-white">Bem-vindo, <strong></strong></h6>
+                    <a class="text-white" id="logout" href="">Sair</a>
+                </div>
+
+                <div class="d-flex" id="loginRoute">
+                    <a href="{{ route('web.login') }}" class="btn btn-success">Entrar</a>
+                </div>
             </div>
         </div>
     </nav>

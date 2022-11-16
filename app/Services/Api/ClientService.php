@@ -32,9 +32,11 @@ class ClientService
     {
 
         $client = Client::where('email', $email)->first();
-        if (Hash::check($password, $client->password) && !$token = Auth::guard('client')->fromUser($client)) {
+        if (!Hash::check($password, $client->password)) {
             throw new LoginInvalidException();
         }
+
+        $token = Auth::guard('client')->fromUser($client);
 
         return (new ClientResource($client))->additional([
             'access_token' => $token,
