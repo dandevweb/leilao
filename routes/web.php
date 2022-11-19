@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AuctionController;
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\BankController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\OfferController;
 use App\Http\Controllers\Web\PropertyController;
@@ -26,5 +30,15 @@ Route::name('web.')->group(function () {
     Route::post('product/offer', [OfferController::class, 'create'])->name('make.offer');
     Route::post('meus-lances', [OfferController::class, 'index'])->name('client.offers');
 
+});
+
+Route::name('admin.')->prefix('admin')->group(function () {
+
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('login', [AdminAuthController::class, 'login'])->name('login');
+
+    Route::resource('banks', BankController::class);
+    Route::resource('auctions', AuctionController::class);
 
 });

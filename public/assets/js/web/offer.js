@@ -26,7 +26,6 @@ $(document).ready(function () {
             if (response.redirect) {
                 window.location.href = response.redirect
             } else {
-                console.log(response);
                 makeOffer(response.data)
             }
         });
