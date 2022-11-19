@@ -30,11 +30,11 @@
                     <div class="d-flex justify-content-around">
                         <div class="fs-5 mb-5">
                             <strong>Lance Inicial</strong><br>
-                            <span class="text-decoration-line-through">R${{ moneyBrl($product->price) }}</span>
+                            <span class="text-decoration-line-through">{{ moneyBrl($product->price) }}</span>
                         </div>
                         <div class="fs-5 mb-5">
                             <strong>Último Lance</strong><br>
-                            <span>R${{ moneyBrl($product->last_offer) }}</span>
+                            <span>{{ moneyBrl($product->last_offer) }}</span>
                         </div>
                     </div>
 

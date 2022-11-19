@@ -25,9 +25,9 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="}}">
-                <i class="bi bi-currency-dollar"></i>
-                <span>Planos</span>
+            <a class="nav-link collapsed" href="{{ route('admin.vehicles.index') }}">
+                <i class="bi bi-truck"></i>
+                <span>Veículos</span>
             </a>
         </li><!-- End Profile Page Nav -->
 

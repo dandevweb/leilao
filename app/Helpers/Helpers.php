@@ -5,7 +5,7 @@ declare(strict_types=1);
 if (!function_exists('moneyBrl')) {
     function moneyBrl(float $value): string
     {
-        return number_format($value, 2, ',', '.');
+        return 'R$ ' . number_format($value, 2, ',', '.');
     }
 }
 

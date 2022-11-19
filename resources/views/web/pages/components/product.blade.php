@@ -29,7 +29,7 @@
                                 <!-- Product price-->
                                 <p class="mb-1">
                                     <strong>Lance Inicial</strong> <br>
-                                    R$ {{ moneyBrl($product->price) }}
+                                    {{ moneyBrl($product->price) }}
                                 </p>
                             </div>
                         </div>

@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\Admin\AuctionController;
-use App\Http\Controllers\Admin\AuthController as AdminAuthController;
-use App\Http\Controllers\Admin\BankController;
-use App\Http\Controllers\Admin\DashboardController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\OfferController;
+use App\Http\Controllers\Admin\BankController;
 use App\Http\Controllers\Web\PropertyController;
-use App\Http\Controllers\Web\VehicleController;
-use App\Http\Controllers\Web\AuthController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AuctionController;
+use App\Http\Controllers\Admin\VehicleController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 
 Route::name('web.')->group(function () {
 
@@ -40,5 +40,6 @@ Route::name('admin.')->prefix('admin')->group(function () {
 
     Route::resource('banks', BankController::class);
     Route::resource('auctions', AuctionController::class);
+    Route::resource('vehicles', VehicleController::class);
 
 });

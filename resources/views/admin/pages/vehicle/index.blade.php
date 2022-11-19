@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Leilões</h1>
+        <h1>Veículos</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Leilões</li>
+                <li class="breadcrumb-item active">Veículos</li>
             </ol>
         </nav>
         <div class="alert alert-dismissible fade ajax-alert" role="alert"></div>
@@ -19,11 +19,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center px-4">
-                            <h5 class="card-title">Leilões Cadastrados</h5>
+                            <h5 class="card-title">Veículos Cadastrados</h5>
                             <div>
-                                <a href="{{ route('admin.auctions.create') }}" class="btn btn-primary">
+                                <a href="{{ route('admin.vehicles.create') }}" class="btn btn-primary">
                                     <i class="bi bi-node-plus"></i>
-                                    Cadastrar Leilão
+                                    Cadastrar Veículo
                                 </a>
                             </div>
                         </div>
@@ -33,34 +33,35 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Data de Início</th>
-                                    <th scope="col">Data Final</th>
-                                    <th scope="col">Cidade</th>
-                                    <th scope="col">Estado</th>
+                                    <th scope="col">Descrição</th>
+                                    <th scope="col">Leilão</th>
+                                    <th scope="col">Lance Inicial</th>
+                                    <th scope="col">Lance Atual</th>
+                                    <th scope="col">Quantidade</th>
+                                    <th scope="col">Armazenado em</th>
                                     <th scope="col">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @isset($auctions)
-                                    @foreach ($auctions as $auction)
+                                @isset($vehicles)
+                                    @foreach ($vehicles as $vehicle)
                                         <tr>
-                                            <th scope="row">{{ $auction->id }}</th>
-                                            <td>{{ $auction->name }}</td>
-                                            <td>{{ dateBrl($auction->date) }}</td>
-                                            <td>{{ dateBrl($auction->finished_date) }}</td>
-                                            <td>{{ $auction->city }}</td>
-                                            <td>{{ $auction->state }}</td>
+                                            <th scope="row">{{ $vehicle->id }}</th>
+                                            <td>{!! Str::substr($vehicle->description, 0, 50) . '...' !!}</td>
+                                            <td><a href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#detailsModal{{ $vehicle->auctions->id }}">
+                                                    {{ $vehicle->auctions->name }}</a></td>
+                                            <td>{{ moneyBrl($vehicle->price) }}</td>
+                                            <td>{{ moneyBrl($vehicle->last_offer) }}</td>
+                                            <td>{{ $vehicle->quantity }}</td>
+                                            <td>{{ $vehicle->stored_in }}</td>
                                             <td class="d-flex">
-                                                <a class="me-1" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#detailsModal{{ $auction->id }}">
-                                                    <i class="bi bi-eye-fill text-primary fs-5"></i>
-                                                </a>
-                                                <a class="me-1 ms-2" href="{{ route('admin.auctions.edit', $auction->id) }}">
+                                                <a class="me-1"
+                                                    href="{{ route('admin.vehicles.edit', ['vehicle' => $vehicle->id]) }}">
                                                     <i class="bi bi-pencil-square text-warning fs-5"></i>
                                                 </a>
 
-                                                <form action="{{ url("api/auctions/$auction->id") }}" method="POST"
+                                                <form action="{{ url("api/vehicles/$vehicle->id") }}" method="POST"
                                                     class="ms-2 ajax-delete">
                                                     @csrf
                                                     @method('DELETE')
@@ -72,13 +73,15 @@
                                             </td>
                                         </tr>
 
-                                        @component('admin.master.components.modal', ['data' => $auction])
+                                        @component('admin.master.components.modal', ['data' => $vehicle->auctions])
                                         @endcomponent
                                     @endforeach
                                 @endisset
 
                             </tbody>
                         </table>
+                        <!-- End Table with stripped rows -->
+
                     </div>
                 </div>
 
