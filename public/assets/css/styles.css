@@ -28,16 +28,16 @@ body {
 
 
 /* Since positioning the image, we need to help out the caption */
-.carousel-caption {
+#myCarousel .carousel-caption {
     z-index: 10;
 }
 
 /* Declare heights because of positioning of img element */
-.carousel-item {
+#myCarousel .carousel-item {
     height: calc(100vh - 100px);
 }
 
-.carousel-item>img {
+#myCarousel .carousel-item>img {
     position: absolute;
     top: 0;
     left: 0;

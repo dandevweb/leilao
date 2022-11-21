@@ -4,8 +4,25 @@
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
-                        src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+                <div class="col-md-6">
+                    <div id="detailsCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner position-relative">
+                            @foreach ($product->images as $image)
+                                <div class="carousel-item {{ $loop->index === 0 ? 'active' : '' }}">
+                                    <img src="{{ $image->path }}" class="d-block w-100" alt="">
+                                </div>
+                            @endforeach
+                        </div>
+                        <a class="carousel-control-prev" href="#detailsCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#detailsCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="alert alert-dismissible fade ajax-alert" role="alert"></div>
                     @isset($product->type)
@@ -60,5 +77,8 @@
 @endsection
 
 @section('js')
+    <script>
+        document.getElementById("inputQuantity").addEventListener("keydown", e => e.preventDefault());
+    </script>
     <script src="{{ asset('assets/js/web/offer.js') }}"></script>
 @endsection
