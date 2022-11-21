@@ -17,9 +17,9 @@ class VehicleFactory extends Factory
     public function definition()
     {
         return [
-            'price' => fake()->randomFloat(2, 20000, 90000),
-            'increment' => fake()->randomFloat(2, 500, 1000),
-            'stored_in' => fake()->word(),
+            'price' => fake()->randomFloat(0, 20000, 90000),
+            'increment' => fake()->randomFloat(0, 500, 1000),
+            'stored_in' => fake('pt_BR')->city(),
             'quantity' => fake()->numberBetween(1, 10),
             'description' => 'Veículo '. fake()->text(),
             'auction_id' => fake()->randomElement(\App\Models\Auction::all()->pluck('id')->toArray()),

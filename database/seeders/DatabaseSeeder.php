@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ClientSeeder::class);
         $this->call(PropertySeeder::class);
         $this->call(VehicleSeeder::class);
+        $this->call(VehicleImageSeeder::class);
+        $this->call(PropertyImageSeeder::class);
     }
 }

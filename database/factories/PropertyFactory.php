@@ -17,11 +17,11 @@ class PropertyFactory extends Factory
     public function definition()
     {
         return [
-           'price' => fake()->randomFloat(2, 300000, 900000),
-           'increment' => fake()->randomFloat(2, 500, 10000),
+           'price' => fake()->randomFloat(0, 300000, 90000),
+           'increment' => fake()->randomFloat(0, 500, 10000),
            'category' => fake()->randomElement(['residencial', 'comercial', 'rural']),
            'type' => fake()->randomElement(['casa', 'apartamento', 'terreno', 'fazenda']),
-           'description' => fake()->text(),
+           'description' => fake('pt_BR')->text(),
            'area_total' => fake()->numberBetween(60, 300),
            'area_util' => fake()->numberBetween(40, 100),
            'address' => fake('pt_BR')->address(),

@@ -23,13 +23,18 @@ class Vehicle extends Model
         return $this->belongsTo(Auction::class);
     }
 
+    public function images()
+    {
+        return $this->hasMany(VehicleImage::class)->orderBy('cover', 'DESC');
+    }
+
     public function offers()
     {
-        return $this->hasMany(Offer::class);
+        return $this->hasMany(Offer::class)->orderBy('id', 'desc');
     }
 
     public function lastOffer()
     {
-        return $this->hasMany(Offer::class);
+        return $this->hasMany(Offer::class)->orderBy('id', 'desc');
     }
 }

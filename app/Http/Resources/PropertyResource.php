@@ -23,6 +23,7 @@ class PropertyResource extends JsonResource
             'address' => $this->address,
             'city' => $this->city,
             'state' => $this->state,
+            'images' => ImagesResource::collection($this->images),
             'auctions' => new AuctionResource($this->auction)
         ];
     }

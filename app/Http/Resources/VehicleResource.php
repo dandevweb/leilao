@@ -18,6 +18,7 @@ class VehicleResource extends JsonResource
             'stored_in' => $this->stored_in,
             'quantity' => $this->quantity,
             'description' => $this->description,
+            'images' => ImagesResource::collection($this->images),
             'auctions' => new AuctionResource($this->auction)
         ];
     }

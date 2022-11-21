@@ -1,5 +1,6 @@
 $(document).ready(function () {
     const form = $('#formMakeOffer')
+    const ajaxAlert = $('.ajax-alert')
 
     $(form).submit(function (e) {
         e.preventDefault();
@@ -43,14 +44,32 @@ $(document).ready(function () {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${offer.token}`
             },
-        }).done(function (response) {
-            if (response) {
-                $('#alertOffer').removeClass('d-none')
+            success: function (response) {
+                $(ajaxAlert).text('Lance registrado com sucesso!')
+                $(ajaxAlert).css('display', 'flex');
+                $(ajaxAlert).addClass('show alert-success');
+                window.scrollTo(0, 0);
                 setInterval(() => {
-                    $('#formOffers').submit();
-                }, 4000);
+                    $(ajaxAlert).css('display', 'none');
+                    window.location.reload()
+                }, 3000);
+            },
+            error: function (error) {
+                let errorMessage = error.responseJSON.message
+                if (error.responseJSON.error === "OfferInvalidException") {
+                    errorMessage = 'O valor do seu lance é inválido.'
+                }
+
+                $(ajaxAlert).text(errorMessage)
+                $(ajaxAlert).css('display', 'flex');
+                $(ajaxAlert).addClass('show alert-danger');
+                window.scrollTo(0, 0);
+                setInterval(() => {
+                    $(ajaxAlert).removeClass('show alert-danger');
+                    $(ajaxAlert).css('display', 'none');
+                }, 3000);
             }
-        });
+        })
     }
 
 

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Property extends Model
@@ -27,6 +26,11 @@ class Property extends Model
     public function auction()
     {
         return $this->belongsTo(Auction::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(PropertyImage::class)->orderBy('cover', 'DESC');
     }
 
     public function offers()

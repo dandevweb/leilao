@@ -7,9 +7,7 @@
                 <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
                         src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
                 <div class="col-md-6">
-                    <div class="alert alert-success alert-dismissible show d-none" role="alert" id="alertOffer">
-                        Lance registrado com sucesso.
-                    </div>
+                    <div class="alert alert-dismissible fade ajax-alert" role="alert"></div>
                     @isset($product->type)
                         <h1 class="display-5 fw-bolder mb-5">
                             {{ ucfirst($product->type) . ' em ' . $product->city . ' - ' . $product->state }}
