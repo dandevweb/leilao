@@ -25,11 +25,11 @@ class Vehicle extends Model
 
     public function offers()
     {
-        return $this->hasMany(Offer::class)->orderBy('id', 'DESC');
+        return $this->hasMany(Offer::class);
     }
 
     public function lastOffer()
     {
-        return $this->hasMany(Offer::class)->orderBy('id', 'DESC');
+        return $this->hasMany(Offer::class);
     }
 }

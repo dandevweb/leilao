@@ -40,6 +40,7 @@
                                     <th scope="col">Lance Atual</th>
                                     <th scope="col">Cidade</th>
                                     <th scope="col">Estado</th>
+                                    <th scope="col">Lances</th>
                                     <th scope="col">Ações</th>
                                 </tr>
                             </thead>
@@ -57,7 +58,9 @@
                                             <td>{{ moneyBrl($property->last_offer) }}</td>
                                             <td>{{ $property->city }}</td>
                                             <td>{{ $property->state }}</td>
-
+                                            <td><a class="me-2" href="{{ route('admin.offers.properties', $property->id) }}">
+                                                    <i class="bi bi-currency-dollar text-primary fs-5"></i>
+                                                </a></td>
                                             <td class="d-flex">
                                                 <a class="me-2" href="#" data-bs-toggle="modal"
                                                     data-bs-target="#detailsPropertyModal{{ $property->id }}">

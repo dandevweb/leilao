@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\VehicleController as AdminVehicleController;
 use App\Http\Controllers\Admin\PropertyController as AdminPropertyController;
+use App\Http\Controllers\Admin\OfferController as AdminOfferController;
 
 Route::name('web.')->group(function () {
 
@@ -44,5 +45,8 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::resource('auctions', AuctionController::class);
     Route::resource('vehicles', AdminVehicleController::class);
     Route::resource('properties', AdminPropertyController::class);
+
+    Route::get('offers/{id}/vehicles', [AdminOfferController::class, 'vehicles'])->name('offers.vehicles');
+    Route::get('offers/{id}/properties', [AdminOfferController::class, 'properties'])->name('offers.properties');
 
 });

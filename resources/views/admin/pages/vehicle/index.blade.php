@@ -39,6 +39,7 @@
                                     <th scope="col">Lance Atual</th>
                                     <th scope="col">Quantidade</th>
                                     <th scope="col">Armazenado em</th>
+                                    <th scope="col">Lances</th>
                                     <th scope="col">Ações</th>
                                 </tr>
                             </thead>
@@ -47,7 +48,7 @@
                                     @foreach ($vehicles as $vehicle)
                                         <tr>
                                             <th scope="row">{{ $vehicle->id }}</th>
-                                            <td>{!! Str::substr($vehicle->description, 0, 50) . '...' !!}</td>
+                                            <td>{!! Str::substr($vehicle->description, 0, 40) . '...' !!}</td>
                                             <td><a href="#" data-bs-toggle="modal"
                                                     data-bs-target="#detailsModal{{ $vehicle->auctions->id }}">
                                                     {{ $vehicle->auctions->name }}</a></td>
@@ -55,6 +56,9 @@
                                             <td>{{ moneyBrl($vehicle->last_offer) }}</td>
                                             <td>{{ $vehicle->quantity }}</td>
                                             <td>{{ $vehicle->stored_in }}</td>
+                                            <td><a class="me-2" href="{{ route('admin.offers.vehicles', $vehicle->id) }}">
+                                                    <i class="bi bi-currency-dollar text-primary fs-5"></i>
+                                                </a></td>
                                             <td class="d-flex">
                                                 <a class="me-1"
                                                     href="{{ route('admin.vehicles.edit', ['vehicle' => $vehicle->id]) }}">

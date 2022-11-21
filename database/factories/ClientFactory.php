@@ -17,7 +17,7 @@ class ClientFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'Financeira '. fake()->unique()->firstName(),
+            'name' => fake()->unique()->name(),
             'document' => fake('pt_BR')->cpf(),
             'email' => fake()->email(),
             'phone' => fake('pt_BR')->phoneNumber(),

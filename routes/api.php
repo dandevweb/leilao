@@ -25,8 +25,8 @@ Route::middleware('auth:api')->group(function () {
 
     Route::apiResource('properties', PropertyController::class);
 
-    Route::get('offers/{vehicle}/vehicle', [OfferController::class, 'vehicleOffer']);
-    Route::get('offers/{property}/property', [OfferController::class, 'propertyOffer']);
+    Route::get('offers/{vehicle}/vehicles', [OfferController::class, 'vehicleShow']);
+    Route::get('offers/{property}/properties', [OfferController::class, 'propertyShow']);
 
 });
 
@@ -39,9 +39,6 @@ Route::get('properties/{property}', [PropertyController::class, 'show']);
 /**Auth Client Routes */
 Route::post('client/register', [ClientController::class, 'register']);
 Route::post('client/login', [ClientController::class, 'login']);
-// Route::post('client/login', function(Request $request){
-//     dd($request);
-// });
 
 /**JWT Client Token protected Routes */
 Route::middleware('auth:client')->group(function () {

@@ -14,13 +14,13 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 class OfferController extends Controller
 {
 
-    public function vehicleOffer(Vehicle $vehicle):  ResourceCollection
+    public function vehicleShow(Vehicle $vehicle):  ResourceCollection
     {
 
         return OfferVehicleResource::collection($vehicle->offers);
     }
 
-    public function propertyOffer(Property $property):  ResourceCollection
+    public function propertyShow(Property $property):  ResourceCollection
     {
         return OfferPropertyResource::collection($property->offers);
     }
