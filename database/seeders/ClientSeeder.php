@@ -15,6 +15,13 @@ class ClientSeeder extends Seeder
      */
     public function run()
     {
+        Client::factory()->create([
+            'name' => 'Danilo Augusto',
+            'email' => 'cliente@gmail.com',
+            'password' => bcrypt('password'),
+
+        ]);
+
         Client::factory(20)->create();
     }
 }

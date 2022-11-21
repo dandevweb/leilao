@@ -59,23 +59,25 @@
                                             <td><a class="me-2" href="{{ route('admin.offers.vehicles', $vehicle->id) }}">
                                                     <i class="bi bi-currency-dollar text-primary fs-5"></i>
                                                 </a></td>
-                                            <td class="d-flex">
-                                                <a class="me-1"
-                                                    href="{{ route('admin.vehicles.edit', ['vehicle' => $vehicle->id]) }}">
-                                                    <i class="bi bi-pencil-square text-warning fs-5"></i>
-                                                </a>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <a class="me-1"
+                                                        href="{{ route('admin.vehicles.edit', ['vehicle' => $vehicle->id]) }}">
+                                                        <i class="bi bi-pencil-square text-warning fs-5"></i>
+                                                    </a>
 
-                                                <form action="{{ url("api/vehicles/$vehicle->id") }}" method="POST"
-                                                    class="ms-2 ajax-delete">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <input type="hidden" name="token" value="{{ $token }}">
-                                                    <button
-                                                        {{ $vehicle->last_offer > $vehicle->price ? 'style=cursor:not-allowed;opacity:0.5 disabled' : '' }}
-                                                        type="submit" class="border-0 bg-transparent">
-                                                        <i class="bi bi-x-square-fill text-danger fs-5"></i>
-                                                    </button>
-                                                </form>
+                                                    <form action="{{ url("api/vehicles/$vehicle->id") }}" method="POST"
+                                                        class="ms-2 ajax-delete">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="hidden" name="token" value="{{ $token }}">
+                                                        <button
+                                                            {{ $vehicle->last_offer > $vehicle->price ? 'style=cursor:not-allowed;opacity:0.5 disabled' : '' }}
+                                                            type="submit" class="border-0 bg-transparent">
+                                                            <i class="bi bi-x-square-fill text-danger fs-5"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
 

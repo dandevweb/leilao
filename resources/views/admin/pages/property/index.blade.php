@@ -61,27 +61,29 @@
                                             <td><a class="me-2" href="{{ route('admin.offers.properties', $property->id) }}">
                                                     <i class="bi bi-currency-dollar text-primary fs-5"></i>
                                                 </a></td>
-                                            <td class="d-flex">
-                                                <a class="me-2" href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#detailsPropertyModal{{ $property->id }}">
-                                                    <i class="bi bi-eye-fill text-primary fs-5"></i>
-                                                </a>
-                                                <a class="mx-2"
-                                                    href="{{ route('admin.properties.edit', ['property' => $property->id]) }}">
-                                                    <i class="bi bi-pencil-square text-warning fs-5"></i>
-                                                </a>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <a class="me-2" href="#" data-bs-toggle="modal"
+                                                        data-bs-target="#detailsPropertyModal{{ $property->id }}">
+                                                        <i class="bi bi-eye-fill text-primary fs-5"></i>
+                                                    </a>
+                                                    <a class="mx-2"
+                                                        href="{{ route('admin.properties.edit', ['property' => $property->id]) }}">
+                                                        <i class="bi bi-pencil-square text-warning fs-5"></i>
+                                                    </a>
 
-                                                <form action="{{ url("api/properties/$property->id") }}" method="POST"
-                                                    class="ms-2 ajax-delete">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <input type="hidden" name="token" value="{{ $token }}">
-                                                    <button
-                                                        {{ $property->last_offer > $property->price ? 'style=cursor:not-allowed;opacity:0.5 disabled' : '' }}
-                                                        type="submit" class="border-0 bg-transparent">
-                                                        <i class="bi bi-x-square-fill text-danger fs-5"></i>
-                                                    </button>
-                                                </form>
+                                                    <form action="{{ url("api/properties/$property->id") }}" method="POST"
+                                                        class="ms-2 ajax-delete">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="hidden" name="token" value="{{ $token }}">
+                                                        <button
+                                                            {{ $property->last_offer > $property->price ? 'style=cursor:not-allowed;opacity:0.5 disabled' : '' }}
+                                                            type="submit" class="border-0 bg-transparent">
+                                                            <i class="bi bi-x-square-fill text-danger fs-5"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
 

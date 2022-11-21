@@ -10,9 +10,9 @@ Sistema de Leilões Eletrônicos
 Necessário sistema operacional macOS, Linux ou Windows (via [WSL2](https://docs.microsoft.com/en-us/windows/wsl/about))
 
 
-## Documentação
+## Documentação da API
 
-[Documentação](https://documenter.getpostman.com/view/22300616/2s8YYMmLDN)
+[Documentação da API](https://documenter.getpostman.com/view/22300616/2s8YYMmLDN)
 
 
 
@@ -21,6 +21,7 @@ Necessário sistema operacional macOS, Linux ou Windows (via [WSL2](https://docs
 
 
 **Back-end:** PHP 8.1, Laravel 9, JWT-auth 2.0, Laravel Sail
+**Front-end:** Html, Css, Bootstrap
 
 ## Rodando localmente
 
@@ -83,7 +84,19 @@ Execute quarquer comando dentro do container utilizando "sail". Exemplos:
   sail php --version
 ```
 
-[Documentação](https://documenter.getpostman.com/view/22300616/2s8YYMmLDN)
+Acesse o projeto em:
+    - http://localhost:8080 (Área do cliente)
+        'email': 'cliente@gmail.com',
+        'password': 'password',
+
+    - http://localhost:8080/admin (Área Admin) 
+            'email': 'admin@gmail.com',
+            'password': 'password',
+
+
+
+
+[Documentação da API](https://documenter.getpostman.com/view/22300616/2s8YYMmLDN)
 
 ## Executando o projeto sem Docker
 
@@ -133,4 +146,4 @@ Execute o servido embutido do Laravel
 
 
 
-Siga a [Documentação](https://documenter.getpostman.com/view/22300616/2s8YYMmLDN) alterando somente a url base para http://localhost:8000
+Siga a [Documentação da API](https://documenter.getpostman.com/view/22300616/2s8YYMmLDN) alterando somente a url base para http://localhost:8000
