@@ -85,6 +85,7 @@ Execute quarquer comando dentro do container utilizando "sail". Exemplos:
 ```
 
 Acesse o projeto em:
+
     - http://localhost:8080 (Área do cliente)
         'email': 'cliente@gmail.com',
         'password': 'password',
