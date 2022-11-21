@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Veículos</h1>
+        <h1>Imóveis</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Veículos</li>
+                <li class="breadcrumb-item active">Imóveis</li>
             </ol>
         </nav>
         <div class="alert alert-dismissible fade ajax-alert" role="alert"></div>
@@ -19,11 +19,11 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center px-4">
-                            <h5 class="card-title">Veículos Cadastrados</h5>
+                            <h5 class="card-title">Imóveis Cadastrados</h5>
                             <div>
-                                <a href="{{ route('admin.vehicles.create') }}" class="btn btn-primary">
+                                <a href="{{ route('admin.properties.create') }}" class="btn btn-primary">
                                     <i class="bi bi-node-plus"></i>
-                                    Cadastrar Veículo
+                                    Cadastrar Imóvel
                                 </a>
                             </div>
                         </div>
@@ -33,41 +33,48 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Descrição</th>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Categoria</th>
                                     <th scope="col">Leilão</th>
                                     <th scope="col">Lance Inicial</th>
                                     <th scope="col">Lance Atual</th>
-                                    <th scope="col">Quantidade</th>
-                                    <th scope="col">Armazenado em</th>
+                                    <th scope="col">Cidade</th>
+                                    <th scope="col">Estado</th>
                                     <th scope="col">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @isset($vehicles)
-                                    @foreach ($vehicles as $vehicle)
+                                @isset($properties)
+                                    @foreach ($properties as $property)
                                         <tr>
-                                            <th scope="row">{{ $vehicle->id }}</th>
-                                            <td>{!! Str::substr($vehicle->description, 0, 50) . '...' !!}</td>
+                                            <th scope="row">{{ $property->id }}</th>
+                                            <td>{{ Str::ucfirst($property->type) }}</td>
+                                            <td>{{ Str::ucfirst($property->category) }}</td>
                                             <td><a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#detailsModal{{ $vehicle->auctions->id }}">
-                                                    {{ $vehicle->auctions->name }}</a></td>
-                                            <td>{{ moneyBrl($vehicle->price) }}</td>
-                                            <td>{{ moneyBrl($vehicle->last_offer) }}</td>
-                                            <td>{{ $vehicle->quantity }}</td>
-                                            <td>{{ $vehicle->stored_in }}</td>
+                                                    data-bs-target="#detailsModal{{ $property->auctions->id }}">
+                                                    {{ $property->auctions->name }}</a></td>
+                                            <td>{{ moneyBrl($property->price) }}</td>
+                                            <td>{{ moneyBrl($property->last_offer) }}</td>
+                                            <td>{{ $property->city }}</td>
+                                            <td>{{ $property->state }}</td>
+
                                             <td class="d-flex">
-                                                <a class="me-1"
-                                                    href="{{ route('admin.vehicles.edit', ['vehicle' => $vehicle->id]) }}">
+                                                <a class="me-2" href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#detailsPropertyModal{{ $property->id }}">
+                                                    <i class="bi bi-eye-fill text-primary fs-5"></i>
+                                                </a>
+                                                <a class="mx-2"
+                                                    href="{{ route('admin.properties.edit', ['property' => $property->id]) }}">
                                                     <i class="bi bi-pencil-square text-warning fs-5"></i>
                                                 </a>
 
-                                                <form action="{{ url("api/vehicles/$vehicle->id") }}" method="POST"
+                                                <form action="{{ url("api/properties/$property->id") }}" method="POST"
                                                     class="ms-2 ajax-delete">
                                                     @csrf
                                                     @method('DELETE')
                                                     <input type="hidden" name="token" value="{{ $token }}">
                                                     <button
-                                                        {{ $vehicle->last_offer > $vehicle->price ? 'style=cursor:not-allowed;opacity:0.5 disabled' : '' }}
+                                                        {{ $property->last_offer > $property->price ? 'style=cursor:not-allowed;opacity:0.5 disabled' : '' }}
                                                         type="submit" class="border-0 bg-transparent">
                                                         <i class="bi bi-x-square-fill text-danger fs-5"></i>
                                                     </button>
@@ -75,7 +82,10 @@
                                             </td>
                                         </tr>
 
-                                        @component('admin.master.components.modal', ['data' => $vehicle->auctions])
+                                        @component('admin.master.components.modal', ['data' => $property->auctions])
+                                        @endcomponent
+
+                                        @component('admin.master.components.property-modal', ['data' => $property])
                                         @endcomponent
                                     @endforeach
                                 @endisset

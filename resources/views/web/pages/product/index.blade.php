@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <p class="lead">{{ $product->description }}</p>
+                    <p class="lead">{!! $product->description !!}</p>
                     <form action="{{ route('web.make.offer') }}" class="d-flex" method="post" id="formMakeOffer">
                         @csrf
                         <input type="hidden" name="client_id" value="0">

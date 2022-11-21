@@ -18,7 +18,7 @@
                         @foreach ($offers as $offer)
                             <tr>
                                 <th scope="row">{{ dateBrl($offer->date) }}</th>
-                                <td>{{ $offer->property ?? $offer->vehicle }}</td>
+                                <td>{!! $offer->property ?? $offer->vehicle !!}</td>
                                 <td>{{ moneyBrl($offer->price) }}</td>
                                 <td>
                                     {{ date($offer->auctionEndDate) > date('Y-m-d')

@@ -14,9 +14,9 @@
                             <div class="text-center">
                                 <!-- Product name-->
                                 <p>
-                                    {{ !isset($product->type)
+                                    {!! !isset($product->type)
                                         ? Str::substr($product->description, 0, 70) . '...'
-                                        : ucfirst($product->type) . ' em ' . $product->city . ' - ' . $product->state }}
+                                        : ucfirst($product->type) . ' em ' . $product->city . ' - ' . $product->state !!}
                                 </p>
                                 <!-- Product reviews-->
                                 <div class="d-flex justify-content-center small text-warning mb-2">

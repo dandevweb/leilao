@@ -34,6 +34,7 @@ $(document).ready(function () {
                         $(ajaxAlert).text('Requisição efetuada com sucesso!')
                         $(ajaxAlert).css('display', 'flex');
                         $(ajaxAlert).addClass('show alert-success');
+                        window.scrollTo(0, 0);
                         setInterval(() => {
                             $(ajaxAlert).css('display', 'none');
                             window.location.reload()
@@ -45,6 +46,7 @@ $(document).ready(function () {
                     $(ajaxAlert).text(errorMessage)
                     $(ajaxAlert).css('display', 'flex');
                     $(ajaxAlert).addClass('show alert-danger');
+                    window.scrollTo(0, 0);
                     setInterval(() => {
                         $(ajaxAlert).removeClass('show alert-danger');
                         $(ajaxAlert).css('display', 'none');

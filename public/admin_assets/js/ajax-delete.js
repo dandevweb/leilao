@@ -24,6 +24,7 @@ $(document).ready(function () {
                 $(ajaxAlert).text('Registro excluído com sucesso!')
                 $(ajaxAlert).css('display', 'flex');
                 $(ajaxAlert).addClass('show alert-success');
+                window.scrollTo(0, 0);
                 setInterval(() => {
                     $(ajaxAlert).css('display', 'none');
                     window.location.reload()
@@ -31,10 +32,16 @@ $(document).ready(function () {
 
             },
             error: function (error) {
-                const errorMessage = error.responseJSON.message
+                console.log(error)
+                let errorMessage = error.responseJSON.message
+                if (error.responseJSON.error === 'Integrity constraint violation') {
+                    errorMessage = 'Já existem lances atrelados a este produto.'
+                }
+
                 $(ajaxAlert).text(errorMessage)
                 $(ajaxAlert).css('display', 'flex');
                 $(ajaxAlert).addClass('show alert-danger');
+                window.scrollTo(0, 0);
                 setInterval(() => {
                     $(ajaxAlert).removeClass('show alert-danger');
                     $(ajaxAlert).css('display', 'none');
